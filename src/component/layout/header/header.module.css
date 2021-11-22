@@ -1,0 +1,48 @@
+.container{
+    display: flex;
+    align-items: center;
+
+    box-sizing: border-box;
+    height: 50px;
+    background-color: #406B84;
+
+}
+
+.container > nav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-left: 120px;
+}
+
+.appName{
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+.searchJob{
+    box-sizing: border-box;
+    height: 30px;
+    width: 290px;
+    border-radius: 3px;
+    padding: 10px 10px;
+
+    outline: none;
+    border: none;
+}
+
+.citySelect {
+    box-sizing: border-box;
+    height: 30px;
+    width: 80px;
+    border-radius: 3px;
+
+    outline: none;
+    text-align: center;
+}
+
+.citySelect > option {
+    text-align: left;
+}
