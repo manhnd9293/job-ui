@@ -1,7 +1,10 @@
 import React from 'react'
+import { FormTextInput } from '../../component/base/formTextInput/FormTextInput';
+import useTextFormField from '../../component/base/formTextInput/useTextFormField';
 import classes from './login.module.css'
 export const Login = () => {
-
+    const userFormData = useTextFormField((value) => !!value);
+    const passwordFormData = useTextFormField((value) => !!value);
     const login = (e) => {
         e.preventDefault();
         
@@ -11,12 +14,15 @@ export const Login = () => {
                 <form onSubmit={login}>
             <div className={classes.card}>
                 <h3>Login</h3>
+                <FormTextInput label={'Username'}
+                               formData={userFormData}
+                ></FormTextInput>
+                 <FormTextInput label={'Password'}
+                                type={'password'}
+                               formData={passwordFormData}
+                ></FormTextInput>
             
-                    <label>Username</label>
-                    <input type={'text'}></input>
-                    <label>Password</label>
-                    <input type={'password'}></input>
-                    <button className={classes.loginBtn}>Login</button>
+                <button className={classes.loginBtn}>Login</button>
             </div>
             </form>
 

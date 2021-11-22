@@ -1,0 +1,16 @@
+.formInput {
+    height: 25px;
+    padding: 3px 15px;
+    border-radius: 5px;
+    border: 1px solid rgb(184, 184, 184);
+    
+    outline: none;
+}
+
+.error {
+    border: 1px solid rgb(182, 17, 17);
+}
+
+.errorMessage {
+    color: rgb(182, 17, 17);
+}
