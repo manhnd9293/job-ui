@@ -1,14 +1,29 @@
 import React from "react";
 import { FormTextInput } from "../../component/base/formTextInput/FormTextInput";
 import useTextFormField from "../../component/base/formTextInput/useTextFormField";
+import { baseAxios } from "../../config/AxiosConfig";
 import classes from "./login.module.css";
 export const Login = () => {
   const userFormData = useTextFormField(validateUsername);
   const passwordFormData = useTextFormField(validatePassword);
+  const isValidForm = userFormData.isValidValue && passwordFormData.isValidValue;
+  
   const login = (e) => {
     e.preventDefault();
     userFormData.setIsTouch(true);
     passwordFormData.setIsTouch(true);
+
+    if(!isValidForm){
+      return;
+    }
+    const data = {
+      username: userFormData.value,
+      password: passwordFormData.value,
+    }
+    baseAxios.post('/user/login', data).then(res => {
+      console.log(res);
+    })
+
   };
   return (
     <div className={classes.container}>
