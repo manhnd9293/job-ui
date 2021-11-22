@@ -3,8 +3,8 @@ import { FormTextInput } from '../../component/base/formTextInput/FormTextInput'
 import useTextFormField from '../../component/base/formTextInput/useTextFormField';
 import classes from './login.module.css'
 export const Login = () => {
-    const userFormData = useTextFormField((value) => !!value);
-    const passwordFormData = useTextFormField((value) => !!value);
+    const userFormData = useTextFormField(validateUsername);
+    const passwordFormData = useTextFormField(validatePassword);
     const login = (e) => {
         e.preventDefault();
         
@@ -28,4 +28,19 @@ export const Login = () => {
 
         </div>
     )
+}
+
+const validateUsername = (value) => {
+    if(!value){
+        return 'This field is required'
+    }
+    return true;
+}
+
+
+const validatePassword = (value) => {
+    if(!value){
+        return 'This field is required'
+    }
+    return true;
 }

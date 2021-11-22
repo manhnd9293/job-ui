@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from './formTextInput.module.css'
 export const FormTextInput = ({label,type, formData}) => {
-    const {value, setValue, setIsTouch, showError} = formData;
+    const {value, setValue, setIsTouch, showError, errorMessage} = formData;
     const errorInputClass = showError ? `${classes.error}` : '';
 
     return (
@@ -14,7 +14,7 @@ export const FormTextInput = ({label,type, formData}) => {
                     className={`${classes.formInput} ${errorInputClass}`}
              ></input>
              {showError && (
-                 <div className={classes.errorMessage}>Invalid value</div>
+                 <div className={classes.errorMessage}>{errorMessage}</div>
              )}
         </div>
     )
