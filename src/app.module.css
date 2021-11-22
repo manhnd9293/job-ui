@@ -10,6 +10,7 @@
 }
 
 .appBody {
-flex-grow: 1;
-margin: 10px 110px;
+    position: relative;
+    flex-grow: 1;
+
 }
