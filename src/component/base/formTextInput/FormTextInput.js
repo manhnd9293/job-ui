@@ -1,21 +1,20 @@
-import React from 'react'
-import classes from './formTextInput.module.css'
-export const FormTextInput = ({label,type, formData}) => {
-    const {value, setValue, setIsTouch, showError, errorMessage} = formData;
-    const errorInputClass = showError ? `${classes.error}` : '';
+import React from "react";
+import classes from "./formTextInput.module.css";
+export const FormTextInput = ({ label, type, formData }) => {
+  const { value, setValue, setIsTouch, showError, errorMessage } = formData;
+  const errorInputClass = showError ? `${classes.error}` : "";
 
-    return (
-        <div>
-            {label && <div>{label}</div>}
-            <input  type={type || 'text'}
-                    value = {value}
-                    onChange={e => setValue(e.target.value)}
-                    onBlur={e => setIsTouch(true)}
-                    className={`${classes.formInput} ${errorInputClass}`}
-             ></input>
-             {showError && (
-                 <div className={classes.errorMessage}>{errorMessage}</div>
-             )}
-        </div>
-    )
-}
+  return (
+    <div>
+      {label && <div>{label}</div>}
+      <input
+        type={type || "text"}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        onBlur={(e) => setIsTouch(true)}
+        className={`${classes.formInput} ${errorInputClass}`}
+      ></input>
+      {showError && <div className={classes.errorMessage}>{errorMessage}</div>}
+    </div>
+  );
+};

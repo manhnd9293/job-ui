@@ -1,43 +1,41 @@
-.container{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+.container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.card{
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
+.card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 
-    width: 350px;
-    /* height: 350px; */
-    padding: 30px;
-    border-radius: 20px;
-    background-color: white;
-
+  width: 350px;
+  /* height: 350px; */
+  padding: 30px;
+  border-radius: 20px;
+  background-color: white;
 }
 
-.card h3{
-    margin: 5px auto;
+.card h3 {
+  margin: 5px auto;
 }
 
 .loginBtn {
-    height: 35px;
-    width: 100px;
-    margin: 0px auto;
-    border: none;
-    outline: none;
-    border-radius: 20px;
-    background-color: rgb(14, 76, 126);
-    
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
+  height: 35px;
+  width: 100px;
+  margin: 0px auto;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  background-color: rgb(14, 76, 126);
+
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
 }
