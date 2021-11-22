@@ -7,12 +7,14 @@ export const Login = () => {
   const passwordFormData = useTextFormField(validatePassword);
   const login = (e) => {
     e.preventDefault();
+    userFormData.setIsTouch(true);
+    passwordFormData.setIsTouch(true);
   };
   return (
     <div className={classes.container}>
-      <form onSubmit={login}>
-        <div className={classes.card}>
-          <h3>Login</h3>
+      <div className={classes.card}>
+        <h3>Login</h3>
+        <form onSubmit={login}>
           <FormTextInput
             label={"Username"}
             formData={userFormData}
@@ -22,10 +24,16 @@ export const Login = () => {
             type={"password"}
             formData={passwordFormData}
           ></FormTextInput>
-
-          <button className={classes.loginBtn}>Login</button>
+          <div className={classes.userAction}>
+            <button className={classes.loginBtn}>Login</button>
+          </div>
+        </form>
+        <div className={classes.separator}></div>
+        <div>
+          <span>Do not have an account ? </span>
+          <span className={classes.signUpText}>Sign up</span>
         </div>
-      </form>
+      </div>
     </div>
   );
 };
@@ -34,12 +42,12 @@ const validateUsername = (value) => {
   if (!value) {
     return "This field is required";
   }
-  return true;
+  return "";
 };
 
 const validatePassword = (value) => {
   if (!value) {
     return "This field is required";
   }
-  return true;
+  return "";
 };

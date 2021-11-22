@@ -1,16 +1,21 @@
 .formInput {
-    height: 25px;
-    padding: 3px 15px;
-    border-radius: 5px;
-    border: 1px solid rgb(184, 184, 184);
-    
-    outline: none;
+  box-sizing: border-box;
+  height: 35px;
+  padding: 3px 15px;
+  border-radius: 5px;
+  border: 1px solid rgb(184, 184, 184);
+  margin-top: 5px;
+  width: 100%;
+
+  outline: none;
 }
 
 .error {
-    border: 1px solid rgb(182, 17, 17);
+  border: 1px solid rgb(182, 17, 17);
 }
 
 .errorMessage {
-    color: rgb(182, 17, 17);
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: rgb(182, 17, 17);
 }

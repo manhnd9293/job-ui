@@ -5,7 +5,7 @@ export const FormTextInput = ({ label, type, formData }) => {
   const errorInputClass = showError ? `${classes.error}` : "";
 
   return (
-    <div>
+    <>
       {label && <div>{label}</div>}
       <input
         type={type || "text"}
@@ -14,7 +14,12 @@ export const FormTextInput = ({ label, type, formData }) => {
         onBlur={(e) => setIsTouch(true)}
         className={`${classes.formInput} ${errorInputClass}`}
       ></input>
-      {showError && <div className={classes.errorMessage}>{errorMessage}</div>}
-    </div>
+      <div
+        className={classes.errorMessage}
+        style={{ visibility: showError ? "visible" : "hidden" }}
+      >
+        {errorMessage || "none"}
+      </div>
+    </>
   );
 };
