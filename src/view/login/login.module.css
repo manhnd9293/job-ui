@@ -53,3 +53,8 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+.errorLoginMessage {
+  margin: 5px auto;
+  color: red;
+}

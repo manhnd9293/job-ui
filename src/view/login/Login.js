@@ -3,9 +3,18 @@ import { FormTextInput } from "../../component/base/formTextInput/FormTextInput"
 import useTextFormField from "../../component/base/formTextInput/useTextFormField";
 import { baseAxios } from "../../config/AxiosConfig";
 import classes from "./login.module.css";
+import { useState } from "react";
+import {useDispatch} from 'react-redux';
+import {logInUser} from '../../store/user/UserAction'
+import { useNavigate } from "react-router-dom";
 export const Login = () => {
   const userFormData = useTextFormField(validateUsername);
   const passwordFormData = useTextFormField(validatePassword);
+  const [invalidLogin, setInvalidLogin] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('none');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const isValidForm = userFormData.isValidValue && passwordFormData.isValidValue;
   
   const login = (e) => {
@@ -16,12 +25,17 @@ export const Login = () => {
     if(!isValidForm){
       return;
     }
+    
     const data = {
       username: userFormData.value,
       password: passwordFormData.value,
     }
     baseAxios.post('/user/login', data).then(res => {
-      console.log(res);
+      dispatch(logInUser(res.data));
+      navigate('/');
+    }).catch(e => {
+      setInvalidLogin(true);
+      setErrorMessage('Incorrect username and password, please check again !');
     })
 
   };
@@ -39,6 +53,9 @@ export const Login = () => {
             type={"password"}
             formData={passwordFormData}
           ></FormTextInput>
+          <div className={classes.errorLoginMessage}
+          style={{visibility: invalidLogin ? 'visible' : 'hidden'}}
+          >{errorMessage}</div>
           <div className={classes.userAction}>
             <button className={classes.loginBtn}>Login</button>
           </div>
