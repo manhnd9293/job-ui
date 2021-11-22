@@ -29,7 +29,7 @@ export const Login = () => {
           </div>
         </form>
         <div className={classes.separator}></div>
-        <div>
+        <div style={{textAlign: 'center'}}>
           <span>Do not have an account ? </span>
           <span className={classes.signUpText}>Sign up</span>
         </div>
