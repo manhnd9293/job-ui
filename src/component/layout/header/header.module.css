@@ -36,11 +36,7 @@
 .citySelect {
     box-sizing: border-box;
     height: 30px;
-<<<<<<< HEAD
     width: 100px;
-=======
-    width: 80px;
->>>>>>> 24c01228f7845575eb840e01f20f59d52f363f69
     border-radius: 3px;
 
     outline: none;
