@@ -27,7 +27,8 @@
   margin-top: 10px;
 }
 
-.menuItem .subTitle :hover {
-  background-color: grey;
-  transition: 100ms linear;
+.subTitle a {
+  text-decoration: none;
+  color: inherit;
 }
+

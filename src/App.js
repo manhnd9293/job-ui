@@ -24,8 +24,7 @@ function App() {
     if (!userId && !accessToken) {
       navigate("/login");
     } else if (accessToken) {
-      baseAxios
-        .get("/user/info")
+      baseAxios.get("/user/info")
         .then((res) => {
           const userInfo = res.data;
           dispatch(logInUser(userInfo));
