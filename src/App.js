@@ -2,7 +2,7 @@ import "./App.css";
 import classes from "./app.module.css";
 import { Header } from "./component/layout/header/Header";
 import { Footer } from "./component/layout/footer/Footer";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, useParams } from "react-router-dom";
 import { Login } from "./view/login/Login";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +11,7 @@ import { logInUser } from "./store/user/UserAction";
 import { Home } from "./view/home/Home";
 import { SideBar } from "./component/layout/sidebar/SideBar";
 import { CompanySearch } from "./view/company/companySearch/CompanySearch";
+import { CompanyDetail } from "./view/company/detail/CompanyDetail";
 
 function App() {
   const userId = useSelector((state) => state.user.id);
@@ -48,6 +49,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<Home />} />
             <Route path="/company/search" element={<CompanySearch />} />
+            <Route path="/company/detail" element={<CompanyDetail />} />
           </Routes>
         </div>
       </div>
