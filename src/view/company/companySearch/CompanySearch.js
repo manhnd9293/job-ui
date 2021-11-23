@@ -11,7 +11,8 @@ export const CompanySearch = () => {
         })
         
     }, [])
-  return (
+  
+    return (
     <div className={classes.container}>
         <ActionBar></ActionBar>
         <CompanyList companyList={companyList}></CompanyList>

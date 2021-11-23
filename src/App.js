@@ -40,9 +40,9 @@ function App() {
 
   return (
     <div className={classes.app}>
-      <Header></Header>
+      <Header/>
       <div className={classes.appBody}>
-        <SideBar></SideBar>
+        {userId && <SideBar></SideBar>}
         <div>
           <Routes>
             <Route path="/login" element={<Login />} />
