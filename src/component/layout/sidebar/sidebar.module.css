@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+  width: 200px;
+  margin: 20px 45px;
+}
+
+.menuItem {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 5px 0px;
+  cursor: pointer;
+}
+
+.menuItem .title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+}
+
+.menuItem .subTitle {
+  margin-left: 30px;
+  margin-top: 10px;
+}
+
+.menuItem .subTitle :hover {
+    background-color: grey;
+    transition: 100ms linear;
+}
