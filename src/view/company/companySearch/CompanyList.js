@@ -14,13 +14,13 @@ export const CompanyList = ({ companyList }) => {
           onClick={goToCompanyView(company._id)}
         >
           <div>
-              
+              <img style={{width: '60px', height: '60px'}} src={`${process.env.REACT_APP_SERVER_URL}/api/v1/company/${company._id}/logo/v${company.logoVersion}`}/>
           </div>
           <div className={classes.companyInfo}>
-            <div>{company.name}</div>
-            <div>{company.size}</div>
-            <div>{company.industry}</div>
-            <div>{company.address}</div>
+            <div style={{fontWeight: 'bold'}}>{company.name}</div>
+            <div>Size: {company.size} employees</div>
+            <div>Industry: {company.industry}</div>
+            <div>Address: {company.address}</div>
           </div>
         </div>
       ))}
