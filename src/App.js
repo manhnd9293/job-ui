@@ -12,6 +12,7 @@ import { Home } from "./view/home/Home";
 import { SideBar } from "./component/layout/sidebar/SideBar";
 import { CompanySearch } from "./view/company/companySearch/CompanySearch";
 import { CompanyDetail } from "./view/company/detail/CompanyDetail";
+import JobPost from "./view/job/post/JobPost";
 
 function App() {
   const userId = useSelector((state) => state.user.id);
@@ -49,6 +50,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/company/search" element={<CompanySearch />} />
             <Route path="/company/detail" element={<CompanyDetail />} />
+            <Route path="/job/post" element={<JobPost />} />
           </Routes>
         </div>
       </div>
