@@ -27,13 +27,20 @@ export const SideBar = () => {
           <FcOrganization size={25}></FcOrganization>
           <span>Company</span>
         </div>
-        <Link to="/company/search">
+        <Link to="/company/search"
+              style={{textDecoration: 'none', color: 'inherit'}}
+        >
           <span className={classes.subTitle}>Search</span>
         </Link>
-        <Link to="/company/create">
+        <Link to="/company/create"
+              style={{textDecoration: 'none', color: 'inherit'}}
+
+        >
           <span className={classes.subTitle}>Create a page</span>
         </Link>
-        <Link to='/company/mine'>
+        <Link to='/company/mine'
+              style={{textDecoration: 'none', color: 'inherit'}}
+        >
         <span className={classes.subTitle}>Your company</span>
         </Link>
       </div>
