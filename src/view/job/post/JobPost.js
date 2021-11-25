@@ -7,6 +7,14 @@ import {baseAxios} from "../../../config/AxiosConfig";
 const JobPost = () => {
     const titleFormData = useTextFormField(validateJobTitle)
     const companyFormData = useTextFormField(requireRule);
+    const [negotiable, setNegotiable] = useState(false);
+
+    const salaryRule = (value) => {
+        if (negotiable) return;
+        return requireRule(value);
+    }
+    const salaryFrom = useTextFormField(salaryRule);
+
 
     const [companyOptions, setCompanyOptions] = useState([]);
 
@@ -40,6 +48,20 @@ const JobPost = () => {
                         options={companyOptions}
                     />
                 </div>
+                <div>
+                    Salary
+                </div>
+                <div>
+                    <input type={'checkbox'}
+                           value={negotiable}
+                           onChange={e => setNegotiable(e.target.checked)}
+                    />
+                    <label>Negotiation</label>
+                </div>
+                <span>From</span>
+                <FormTextInput type={'number'}
+                               formData={salaryFrom}
+                />
             </div>
         </div>
     );
@@ -58,5 +80,6 @@ const requireRule = (value) => {
     }
     return "";
 };
+
 
 export default JobPost;
