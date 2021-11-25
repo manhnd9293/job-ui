@@ -1,6 +1,6 @@
 import { useState } from "react";
-const useTextFormField = (validateFunction) => {
-  const [value, setValue] = useState("");
+const useTextFormField = (validateFunction, initialValue) => {
+  const [value, setValue] = useState(initialValue !== undefined ? initialValue : "");
   const [isTouch, setIsTouch] = useState(false);
   const errorMessage = validateFunction(value);
   const isValidValue = !errorMessage;

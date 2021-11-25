@@ -7,13 +7,16 @@ import {baseAxios} from "../../../config/AxiosConfig";
 const JobPost = () => {
     const titleFormData = useTextFormField(validateJobTitle)
     const companyFormData = useTextFormField(requireRule);
+    const workingAddressFormData = useTextFormField(requireRule);
+    const yearOfExpFormData = useTextFormField(requireRule, 0);
     const [negotiable, setNegotiable] = useState(false);
 
     const salaryRule = (value) => {
         if (negotiable) return;
         return requireRule(value);
     }
-    const salaryFrom = useTextFormField(salaryRule);
+    const salaryFrom = useTextFormField(salaryRule,0);
+    const salaryTo = useTextFormField(salaryRule,0);
 
 
     const [companyOptions, setCompanyOptions] = useState([]);
@@ -48,20 +51,51 @@ const JobPost = () => {
                         options={companyOptions}
                     />
                 </div>
+                <div style={{width: 300}}>
+                    <FormTextInput
+                        label={'Working address'}
+                        formData={workingAddressFormData}
+                    />
+                </div>
+                <div>Year of experience</div>
+                <div style={{width: 80}}>
+                    <FormTextInput
+                        formData={yearOfExpFormData}
+                        type={'number'}
+                    />
+                </div>
                 <div>
                     Salary
                 </div>
-                <div>
-                    <input type={'checkbox'}
-                           value={negotiable}
-                           onChange={e => setNegotiable(e.target.checked)}
-                    />
-                    <label>Negotiation</label>
+                <div className={classes.salaryInfo}>
+                    <div>
+                        <input type={'checkbox'}
+                               value={negotiable}
+                               onChange={e => setNegotiable(e.target.checked)}
+                        />
+                        <label>Negotiation</label>
+                    </div>
+                    <div style={{width: 100}}>
+                        <span>From</span>
+                        <FormTextInput type={'number'}
+                                       formData={salaryFrom}
+                        />
+                    </div>
+                    <div style={{width: 100}}>
+                        <span>To</span>
+                        <FormTextInput type={'number'}
+                                       formData={salaryTo}
+                        />
+                    </div>
                 </div>
-                <span>From</span>
-                <FormTextInput type={'number'}
-                               formData={salaryFrom}
-                />
+                <div>Job description</div>
+
+                <div className={classes.userAction}>
+                    <button className={classes.reviewBtn}>Review</button>
+                    <button className={classes.cancelBtn}>Cancel</button>
+                </div>
+
+
             </div>
         </div>
     );
@@ -75,7 +109,7 @@ const validateJobTitle = (value) => {
 };
 
 const requireRule = (value) => {
-    if (!value) {
+    if (!value && value !== 0) {
         return "This field is required";
     }
     return "";
