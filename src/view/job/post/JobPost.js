@@ -4,6 +4,8 @@ import {FormTextInput} from "../../../component/base/formTextInput/FormTextInput
 import useTextFormField from "../../../component/base/formTextInput/useTextFormField";
 import FormTextSelect from "../../../component/base/formTextSelect/FormTextSelect";
 import {baseAxios} from "../../../config/AxiosConfig";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 const JobPost = () => {
     const titleFormData = useTextFormField(validateJobTitle)
     const companyFormData = useTextFormField(requireRule);
@@ -89,6 +91,17 @@ const JobPost = () => {
                     </div>
                 </div>
                 <div>Job description</div>
+                <div style={{ width: 800}}>
+                    <CKEditor
+                        editor={ ClassicEditor }
+                        data="Enter job description"
+                        onChange={ ( event, editor ) => {
+                            const data = editor.getData();
+                            console.log( { event, editor, data } );
+                        } }
+
+                    />
+                </div>
 
                 <div className={classes.userAction}>
                     <button className={classes.reviewBtn}>Review</button>
