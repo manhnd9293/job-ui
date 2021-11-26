@@ -4,22 +4,25 @@ import {FormTextInput} from "../../../component/base/formTextInput/FormTextInput
 import useTextFormField from "../../../component/base/formTextInput/useTextFormField";
 import FormTextSelect from "../../../component/base/formTextSelect/FormTextSelect";
 import {baseAxios} from "../../../config/AxiosConfig";
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import JdField from "./JdField";
+
 const JobPost = () => {
     const titleFormData = useTextFormField(validateJobTitle)
     const companyFormData = useTextFormField(requireRule);
     const workingAddressFormData = useTextFormField(requireRule);
     const yearOfExpFormData = useTextFormField(requireRule, 0);
+    const jdFormData = useTextFormField(requireRule, '');
     const [negotiable, setNegotiable] = useState(false);
+    const [jd, setJd] = useState('');
+    const jdErrorMessage = requireRule(jd);
 
     const salaryRule = (value) => {
         if (negotiable) return;
         return requireRule(value);
     }
+
     const salaryFrom = useTextFormField(salaryRule,0);
     const salaryTo = useTextFormField(salaryRule,0);
-
 
     const [companyOptions, setCompanyOptions] = useState([]);
 
@@ -36,6 +39,22 @@ const JobPost = () => {
             console.log('Fail to get company options')
         })
     },[])
+
+    function saveDraftJd() {
+        const validForm = !titleFormData.errorMessage && !companyFormData.errorMessage
+        && !yearOfExpFormData.errorMessage && !salaryFrom.errorMessage && !salaryTo.errorMessage && !jdErrorMessage
+        if (!validForm) {
+            titleFormData.setIsTouch(true);
+            companyFormData.setIsTouch(true);
+            workingAddressFormData.setIsTouch(true);
+            yearOfExpFormData.setIsTouch(true);
+            salaryFrom.setIsTouch(true);
+            salaryTo.setIsTouch(true);
+            jdFormData.setIsTouch(true);
+            return;
+        }
+    }
+
     return (
         <div>
             <div>Post a job</div>
@@ -92,19 +111,13 @@ const JobPost = () => {
                 </div>
                 <div>Job description</div>
                 <div style={{ width: 800}}>
-                    <CKEditor
-                        editor={ ClassicEditor }
-                        data="Enter job description"
-                        onChange={ ( event, editor ) => {
-                            const data = editor.getData();
-                            console.log( { event, editor, data } );
-                        } }
-
+                    <JdField jdFormData={jdFormData}
                     />
                 </div>
-
                 <div className={classes.userAction}>
-                    <button className={classes.reviewBtn}>Review</button>
+                    <button className={classes.reviewBtn}
+                            onClick={saveDraftJd}
+                    >Review</button>
                     <button className={classes.cancelBtn}>Cancel</button>
                 </div>
 
