@@ -3,6 +3,7 @@ import {useSelector} from "react-redux";
 import classes from "./sidebar.module.css";
 import {FcBriefcase, FcOrganization} from "react-icons/fc";
 import {Link} from "react-router-dom";
+import {RoutePath} from "../../../constant/RouteConstant";
 
 export const SideBar = () => {
     const user = useSelector((state) => state.user);
@@ -19,7 +20,9 @@ export const SideBar = () => {
                     <FcBriefcase size={25}/>
                     Jobs
                 </div>
-                <span className={classes.subTitle}>Job search</span>
+                <Link to={RoutePath.SearchJob}>
+                    <span className={classes.subTitle}>Job search</span>
+                </Link>
                 <Link to="/job/posting/list"
                       style={{textDecoration: 'none', color: 'inherit'}}
                 >

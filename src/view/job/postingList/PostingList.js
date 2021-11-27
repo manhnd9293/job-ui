@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {baseAxios} from "../../../config/AxiosConfig";
 import classes from './jobPostingList.module.css'
 import {Link, useNavigate} from "react-router-dom";
+
 const JobPostingList = () => {
     const [jobList, setJobList] = useState([]);
     const navigate = useNavigate();

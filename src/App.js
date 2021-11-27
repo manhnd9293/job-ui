@@ -15,6 +15,8 @@ import { CompanyDetail } from "./view/company/detail/CompanyDetail";
 import JobPost from "./view/job/postNew/JobPost";
 import PostReview from "./view/job/review/PostReview";
 import JobPostingList from "./view/job/postingList/PostingList";
+import {RoutePath} from "./constant/RouteConstant";
+import JobSearch from "./view/job/search/JobSearch";
 
 function App() {
   const userId = useSelector((state) => state.user.id);
@@ -45,7 +47,7 @@ function App() {
     <div className={classes.app}>
       <Header/>
       <div className={classes.appBody}>
-        {userId && <SideBar></SideBar>}
+        {userId && <SideBar/>}
         <div>
           <Routes>
             <Route path="/login" element={<Login />} />
@@ -55,6 +57,7 @@ function App() {
             <Route path="/job/post" element={<JobPost />} />
             <Route path="/job/posting/list" element={<JobPostingList />} />
             <Route path="/job/post/review" element={<PostReview />} />
+            <Route path={RoutePath.SearchJob} element={<JobSearch />} />
           </Routes>
         </div>
       </div>

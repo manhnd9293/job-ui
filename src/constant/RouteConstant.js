@@ -4,7 +4,8 @@ const RoutePath = {
     ListCompany: '/company/search',
     CompanyDetail: '/company/search',
     ListJobPost: '/job/posting/list',
-    JobPostReview: '/job/post/review'
+    JobPostReview: '/job/post/review',
+    SearchJob: '/job/search'
 }
 
 export {RoutePath}

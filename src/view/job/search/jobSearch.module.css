@@ -1,0 +1,62 @@
+.container{
+    display: flex;
+    /*box-sizing: border-box;*/
+    width: 1150px;
+    height: 800px;
+    background-color: white;
+}
+
+.jobList{
+    box-sizing: border-box;
+    width: 400px;
+}
+
+.vSep{
+    width: 1px;
+    background-color: #c4c4c4;
+    height: 100%;
+}
+
+.hSep{
+    height: 1px;
+    background-color: #c4c4c4;
+    width: 100%;
+}
+
+
+.jobCard{
+    display: flex;
+    gap: 15px;
+
+    box-sizing: border-box;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.isSelected {
+    background-color: #d1e6ee;
+}
+
+.jobDetail {
+    flex-grow: 1;
+    width: 200px;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+.companyBrief{
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.title{
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.companyDes{
+    max-height: 100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-top: 10px;
+}

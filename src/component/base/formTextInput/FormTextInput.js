@@ -1,5 +1,7 @@
 import React from "react";
 import classes from "./formTextInput.module.css";
+import ReactHtmlParser from 'react-html-parser'
+
 
 export const FormTextInput = ({label, type, formData}) => {
     const {value, setValue, setIsTouch, showError, errorMessage} = formData;
