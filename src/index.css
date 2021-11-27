@@ -28,3 +28,18 @@ v-separator {
 .ck-editor__editable_inline {
   height: 400px;
 }
+
+.viewTitle{
+  margin: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.baseButton {
+  padding: 10px;
+  color: white;
+  outline: none;
+  border: none;
+  background-color: rgb(16, 136, 192);
+  cursor: pointer;
+}

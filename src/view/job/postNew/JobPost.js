@@ -83,7 +83,7 @@ const JobPost = () => {
 
     return (
         <div>
-            <div>Post a job</div>
+            <div className={'viewTitle'}>Post a job</div>
             <div className={classes.formContainer}>
                 <div style={{width: 300}}>
                     <FormTextInput

@@ -20,7 +20,7 @@ export const SideBar = () => {
                     Jobs
                 </div>
                 <span className={classes.subTitle}>Job search</span>
-                <Link to="/job/post"
+                <Link to="/job/posting/list"
                       style={{textDecoration: 'none', color: 'inherit'}}
                 >
                     <span className={classes.subTitle}>Job post</span>

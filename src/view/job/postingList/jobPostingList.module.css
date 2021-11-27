@@ -1,0 +1,26 @@
+.jobCard{
+    display: flex;
+    gap: 10px;
+
+    box-sizing: border-box;
+    margin-top: 10px;
+    width: 500px;
+    min-height: 80px;
+    padding: 10px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.jobTitle{
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.jobInfo{
+    flex-grow: 1;
+}
+
+.viewTitle{
+    margin: 5px;
+    font-weight: bold;
+}
