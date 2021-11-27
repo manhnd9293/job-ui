@@ -14,7 +14,7 @@ const JobPost = () => {
     const companyFormData = useTextFormField(requireRule);
     const workingAddressFormData = useTextFormField(requireRule);
     const yearOfExpFormData = useTextFormField(requireRule, 0);
-    const jdFormData = useTextFormField(requireRule, '');
+    const jdFormData = useTextFormField(requireRule,  '');
     const [negotiable, setNegotiable] = useState(false);
 
     const salaryRule = (value) => {
