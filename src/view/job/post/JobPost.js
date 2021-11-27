@@ -5,16 +5,17 @@ import useTextFormField from "../../../component/base/formTextInput/useTextFormF
 import FormTextSelect from "../../../component/base/formTextSelect/FormTextSelect";
 import {baseAxios} from "../../../config/AxiosConfig";
 import JdField from "./JdField";
+import {useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 const JobPost = () => {
+    const navigate = useNavigate();
     const titleFormData = useTextFormField(validateJobTitle)
     const companyFormData = useTextFormField(requireRule);
     const workingAddressFormData = useTextFormField(requireRule);
     const yearOfExpFormData = useTextFormField(requireRule, 0);
     const jdFormData = useTextFormField(requireRule, '');
     const [negotiable, setNegotiable] = useState(false);
-    const [jd, setJd] = useState('');
-    const jdErrorMessage = requireRule(jd);
 
     const salaryRule = (value) => {
         if (negotiable) return;
@@ -23,6 +24,20 @@ const JobPost = () => {
 
     const salaryFrom = useTextFormField(salaryRule,0);
     const salaryTo = useTextFormField(salaryRule,0);
+    const formDataFields = [titleFormData, companyFormData, workingAddressFormData,
+        yearOfExpFormData, jdFormData, salaryFrom, salaryTo]
+
+    const checkValidField = () => {
+        return !formDataFields.some(field =>
+            field.errorMessage !== ''
+        );
+    }
+
+    const setTouchField = () => {
+        formDataFields.forEach(field => {
+            field.setIsTouch(true);
+        })
+    }
 
     const [companyOptions, setCompanyOptions] = useState([]);
 
@@ -41,18 +56,29 @@ const JobPost = () => {
     },[])
 
     function saveDraftJd() {
-        const validForm = !titleFormData.errorMessage && !companyFormData.errorMessage
-        && !yearOfExpFormData.errorMessage && !salaryFrom.errorMessage && !salaryTo.errorMessage && !jdErrorMessage
+        const validForm = checkValidField();
         if (!validForm) {
-            titleFormData.setIsTouch(true);
-            companyFormData.setIsTouch(true);
-            workingAddressFormData.setIsTouch(true);
-            yearOfExpFormData.setIsTouch(true);
-            salaryFrom.setIsTouch(true);
-            salaryTo.setIsTouch(true);
-            jdFormData.setIsTouch(true);
+            setTouchField();
             return;
         }
+        console.log(`submit form`);
+        const data = {
+            title: titleFormData.value,
+            companyId: companyFormData.value,
+            yearOfExperience: yearOfExpFormData.value,
+            salary: {
+                from: salaryFrom.value,
+                to: salaryTo.value,
+                currency: 'USD',
+            },
+            workAddress: workingAddressFormData.value,
+            jobDescription: jdFormData.value,
+            status: 'Pending'
+        }
+        baseAxios.post('/job', data).then(res => {
+            const newJobId = res.data;
+            navigate(`/job/post/review?jobId=${newJobId}`)
+        })
     }
 
     return (
@@ -85,7 +111,7 @@ const JobPost = () => {
                         type={'number'}
                     />
                 </div>
-                <div>
+                <div style={{fontWeight: 'bold'}}>
                     Salary
                 </div>
                 <div className={classes.salaryInfo}>
@@ -107,6 +133,9 @@ const JobPost = () => {
                         <FormTextInput type={'number'}
                                        formData={salaryTo}
                         />
+                    </div>
+                    <div>
+                        <div>USD</div>
                     </div>
                 </div>
                 <div>Job description</div>
