@@ -13,24 +13,20 @@ const SignUp = () => {
     const navigate = useNavigate();
 
     const validateUsername = (value) => {
+        console.log('run validateUsername')
         if (!value) {
             return "This field is required";
         }
-
-        // baseAxios.post('/user/checkUsername', {
-        //     username: value
-        // }).then(res => {
-        //     const data = res.data;
-        //     if (data.isExist) {
-        //         userFormData.setErrorMessage('Username existed')
-        //         return;
-        //     }
-        //     if (!value) {
-        //         userFormData.setErrorMessage("This field is required");
-        //         return;
-        //     }
-        //     userFormData.setErrorMessage("");
-        // })
+        baseAxios.post('/user/checkUsername', {
+            username: value
+        }).then(res => {
+            const data = res.data;
+            if (data.isExist) {
+                userFormData.setAsyncError('Username existed')
+            } else{
+                userFormData.setAsyncError('')
+            }
+        })
 
         return "";
     };
@@ -57,20 +53,30 @@ const SignUp = () => {
 
     const signUp = (e) => {
         e.preventDefault();
-        userFormData.setIsTouch(true);
-        passwordFormData.setIsTouch(true);
 
+        const invalidForm = formData.some(data => !data.isValidValue);
+        if (invalidForm) {
+            formData.forEach(data => {
+                data.setIsTouch(true);
+            });
+            return;
+        }
+
+        console.log('submit sign up request');
 
         const data = {
             username: userFormData.value,
             password: passwordFormData.value,
-        }
+            confirmPassword: confirmPasswordFormData.value,
+            firstname: firstnameFormData.value,
+            lastname: lastnameFormData.value
+        };
         baseAxios.post('/user/register', data).then(res => {
             dispatch(logInUser(res.data));
             navigate('/');
         }).catch(e => {
             setInvalidSignUp(true);
-            setErrorMessage('Incorrect username and password, please check again !');
+            setErrorMessage(`Fail to sign up user: ${e.toString()}`);
         })
 
     };
@@ -97,6 +103,11 @@ const SignUp = () => {
                         label={"Password"}
                         type={"password"}
                         formData={passwordFormData}
+                    />
+                    <FormTextInput
+                        label={"Confirm Password"}
+                        type={"password"}
+                        formData={confirmPasswordFormData}
                     />
                     <div className={classes.errorLoginMessage}
                          style={{visibility: invalidSignUp ? 'visible' : 'hidden'}}

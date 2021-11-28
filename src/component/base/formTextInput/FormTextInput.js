@@ -4,7 +4,7 @@ import ReactHtmlParser from 'react-html-parser'
 
 
 export const FormTextInput = ({label, type, formData}) => {
-    const {value, setValue, setIsTouch, showError, errorMessage} = formData;
+    const {value, setValue, setIsTouch, showError, errorMessage, asyncError} = formData;
     const errorInputClass = showError ? `${classes.error}` : "";
 
     return (
@@ -21,7 +21,7 @@ export const FormTextInput = ({label, type, formData}) => {
                 className={classes.errorMessage}
                 style={{visibility: showError ? "visible" : "hidden"}}
             >
-                {errorMessage || "none"}
+                {errorMessage || asyncError || "none"}
             </div>
         </>
     );

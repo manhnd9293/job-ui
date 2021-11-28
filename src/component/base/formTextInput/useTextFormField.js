@@ -3,7 +3,8 @@ const useTextFormField = (validateFunction, initialValue) => {
   const [value, setValue] = useState(initialValue !== undefined ? initialValue : "");
   const [isTouch, setIsTouch] = useState(false);
   const errorMessage = validateFunction(value);
-  const isValidValue = !errorMessage;
+  const [asyncError, setAsyncError] = useState('');
+  const isValidValue = !errorMessage && !asyncError;
   const showError = isTouch && !isValidValue;
 
   return {
@@ -14,6 +15,8 @@ const useTextFormField = (validateFunction, initialValue) => {
     isValidValue,
     showError,
     errorMessage,
+    asyncError,
+    setAsyncError
   };
 };
 
