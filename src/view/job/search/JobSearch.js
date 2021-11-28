@@ -38,7 +38,7 @@ const JobSearch = () => {
                                  className={`${classes.jobCard} ${(job._id === selectedJob?._id) ? classes.isSelected : ''}`}
                             >
                                 <div style={{padding: 5}}>
-                                    <img style={{width: '60px', height: '60px'}}
+                                    <img style={{width: 45, height: 45}}
                                          src={`${process.env.REACT_APP_SERVER_URL}/api/v1/company/${job.companyId._id}/logo/v${job.companyId.logoVersion}`}/>
                                 </div>
                                 <div>
@@ -79,7 +79,7 @@ const JobSearch = () => {
                             <div className={classes.title}>About the company</div>
                             <div className={classes.companyBrief}>
                                 <div>
-                                    <img style={{width: 60, height: 60}} src={getLogoUrl(selectedJob.companyId._id)}/>
+                                    <img style={{width: 50, height: 50}} src={getLogoUrl(selectedJob.companyId._id)}/>
                                 </div>
                                 <div>
                                     <div className={'bold'}>
