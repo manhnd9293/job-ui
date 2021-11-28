@@ -6,7 +6,8 @@ import classes from "./login.module.css";
 import {useState} from "react";
 import {useDispatch} from 'react-redux';
 import {logInUser} from '../../../store/user/UserAction'
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {RoutePath} from "../../../constant/RouteConstant";
 
 export const Login = () => {
     const userFormData = useTextFormField(validateUsername);
@@ -64,7 +65,7 @@ export const Login = () => {
                 <div className={classes.separator}/>
                 <div style={{textAlign: 'center'}}>
                     <span>Do not have an account ? </span>
-                    <span className={classes.signUpText}>Sign up</span>
+                    <Link to={RoutePath.SignUp}>Sign up</Link>
                 </div>
             </div>
         </div>

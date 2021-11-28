@@ -1,0 +1,60 @@
+.container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  width: 350px;
+  /* height: 350px; */
+  padding: 25px;
+  border-radius: 20px;
+  background-color: white;
+}
+
+.card h3 {
+  margin: 5px auto;
+}
+.userAction {
+  text-align: center;
+}
+.loginBtn {
+  height: 35px;
+  width: 100px;
+  margin: auto;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  background-color: rgb(14, 76, 126);
+
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+.separator {
+  background-color: rgb(172, 171, 171);
+  height: 1px;
+  margin: 20px -20px;
+}
+
+.signUpText {
+  color: rgb(24, 79, 163);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.errorLoginMessage {
+  margin: 5px auto;
+  color: red;
+}
