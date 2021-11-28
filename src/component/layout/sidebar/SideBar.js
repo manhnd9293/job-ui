@@ -1,12 +1,20 @@
 import React from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import classes from "./sidebar.module.css";
 import {FcBriefcase, FcOrganization} from "react-icons/fc";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {RoutePath} from "../../../constant/RouteConstant";
+import {logInUser, logOutUser} from "../../../store/user/UserAction";
 
 export const SideBar = () => {
     const user = useSelector((state) => state.user);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    function logOut() {
+        dispatch(logOutUser());
+        navigate('/login')
+    }
 
     return (
         <div className={classes.container}>
@@ -14,13 +22,18 @@ export const SideBar = () => {
                 <div
                     className={classes.title}
                 >{`${user.firstname} ${user.lastname}`}</div>
+                <div className={'ml10'}
+                     onClick={logOut}
+                >Log out</div>
             </div>
             <div className={classes.menuItem}>
                 <div className={classes.title}>
                     <FcBriefcase size={25}/>
                     Jobs
                 </div>
-                <Link to={RoutePath.SearchJob}>
+                <Link to={RoutePath.SearchJob}
+                      style={{textDecoration: 'none', color: 'inherit'}}
+                >
                     <span className={classes.subTitle}>Job search</span>
                 </Link>
                 <Link to="/job/posting/list"

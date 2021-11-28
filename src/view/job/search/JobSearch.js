@@ -59,7 +59,7 @@ const JobSearch = () => {
                     selectedJob && (
                         <div className={`${classes.jobDetail}`}>
                             <div className={classes.jobTitle}>{selectedJob.title}</div>
-                            <div className={'mt5'}>
+                            <div className={'mt10'}>
                                 <span>{selectedJob.companyId.name} - </span>
                                 <span>{selectedJob.workAddress}</span>
                             </div>
