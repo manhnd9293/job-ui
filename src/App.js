@@ -3,7 +3,7 @@ import classes from "./app.module.css";
 import { Header } from "./component/layout/header/Header";
 import { Footer } from "./component/layout/footer/Footer";
 import { Route, Routes, useNavigate, useParams } from "react-router-dom";
-import { Login } from "./view/login/Login";
+import { Login } from "./view/user/login/Login";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { baseAxios } from "./config/AxiosConfig";

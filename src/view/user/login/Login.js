@@ -1,11 +1,11 @@
 import React from "react";
-import {FormTextInput} from "../../component/base/formTextInput/FormTextInput";
-import useTextFormField from "../../component/base/formTextInput/useTextFormField";
-import {baseAxios} from "../../config/AxiosConfig";
+import {FormTextInput} from "../../../component/base/formTextInput/FormTextInput";
+import useTextFormField from "../../../component/base/formTextInput/useTextFormField";
+import {baseAxios} from "../../../config/AxiosConfig";
 import classes from "./login.module.css";
 import {useState} from "react";
 import {useDispatch} from 'react-redux';
-import {logInUser} from '../../store/user/UserAction'
+import {logInUser} from '../../../store/user/UserAction'
 import {useNavigate} from "react-router-dom";
 
 export const Login = () => {
