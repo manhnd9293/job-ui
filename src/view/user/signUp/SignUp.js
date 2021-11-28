@@ -1,66 +1,94 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classes from './register.module.css';
 import {FormTextInput} from "../../../component/base/formTextInput/FormTextInput";
 import useTextFormField from "../../../component/base/formTextInput/useTextFormField";
 import {baseAxios} from "../../../config/AxiosConfig";
 import {logInUser} from "../../../store/user/UserAction";
+import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 const SignUp = () => {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const userFormData = useTextFormField(validateUsername);
     const passwordFormData = useTextFormField(validatePassword);
 
-    const isValidForm = userFormData.isValidValue && passwordFormData.isValidValue;
+    const confirmValueRule = (value) => {
+        if (value !== passwordFormData.value) {
+            return "Confirm password not match";
+        }
+        return "";
+    }
 
-    // const login = (e) => {
-    //     e.preventDefault();
-    //     userFormData.setIsTouch(true);
-    //     passwordFormData.setIsTouch(true);
-    //
-    //     if (!isValidForm) {
-    //         return;
-    //     }
-    //
-    //     const data = {
-    //         username: userFormData.value,
-    //         password: passwordFormData.value,
-    //     }
-    //     baseAxios.post('/user/login', data).then(res => {
-    //         dispatch(logInUser(res.data));
-    //         navigate('/');
-    //     }).catch(e => {
-    //         setInvalidLogin(true);
-    //         setErrorMessage('Incorrect username and password, please check again !');
-    //     })
-    //
-    // };
+    const confirmPasswordFormData = useTextFormField(confirmValueRule);
+    const firstnameFormData = useTextFormField(requiredRule);
+    const lastnameFormData = useTextFormField(requiredRule);
+
+    const formData = [userFormData, passwordFormData, confirmPasswordFormData, firstnameFormData, lastnameFormData];
+    const [errorMessage, setErrorMessage] = useState('none');
+    const [invalidSignUp, setInvalidSignUp] = useState(false);
+
+
+    const signUp = (e) => {
+        e.preventDefault();
+        userFormData.setIsTouch(true);
+        passwordFormData.setIsTouch(true);
+
+
+        const data = {
+            username: userFormData.value,
+            password: passwordFormData.value,
+        }
+        baseAxios.post('/user/register', data).then(res => {
+            dispatch(logInUser(res.data));
+            navigate('/');
+        }).catch(e => {
+            setInvalidSignUp(true);
+            setErrorMessage('Incorrect username and password, please check again !');
+        })
+
+    };
     return (
         <div className={classes.container}>
-            <div className={'title'}>Sign Up</div>
-            {/*<div className={classes.card}>*/}
-            {/*    <h3>Login</h3>*/}
-            {/*    <form onSubmit={login}>*/}
-            {/*        <FormTextInput*/}
-            {/*            label={"Username"}*/}
-            {/*            formData={userFormData}*/}
-            {/*        />*/}
-            {/*        <FormTextInput*/}
-            {/*            label={"Password"}*/}
-            {/*            type={"password"}*/}
-            {/*            formData={passwordFormData}*/}
-            {/*        />*/}
-            {/*        <div className={classes.errorLoginMessage}*/}
-            {/*             style={{visibility: invalidLogin ? 'visible' : 'hidden'}}*/}
-            {/*        >{errorMessage}</div>*/}
-            {/*        <div className={classes.userAction}>*/}
-            {/*            <button className={classes.loginBtn}>Login</button>*/}
-            {/*        </div>*/}
-            {/*    </form>*/}
-            {/*    <div className={classes.separator}/>*/}
-            {/*    <div style={{textAlign: 'center'}}>*/}
-            {/*        <span>Do not have an account ? </span>*/}
-            {/*        <span className={classes.signUpText}>Sign up</span>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+            <div className={classes.card}>
+                <h3>Sign Up</h3>
+                <form onSubmit={signUp}>
+                    <FormTextInput
+                        label={"Firstname"}
+                        formData={firstnameFormData}
+                    />
+                    <FormTextInput
+                        label={"Lastname"}
+                        formData={lastnameFormData}
+                    />
+
+                    <FormTextInput
+                        label={"Username"}
+                        formData={userFormData}
+                    />
+                    <FormTextInput
+                        label={"Password"}
+                        type={"password"}
+                        formData={passwordFormData}
+                    />
+                    <div className={classes.errorLoginMessage}
+                         style={{visibility: invalidSignUp ? 'visible' : 'hidden'}}
+                    >{errorMessage}</div>
+                    <div className={classes.userAction}>
+                        <button className={classes.loginBtn}>Sign Up</button>
+                    </div>
+                </form>
+                <div className={classes.separator}/>
+                <div style={{textAlign: 'center'}}>
+                    <span>Already have an account ? </span>
+                    <span className={classes.signUpText}
+                          onClick={e => {
+                              navigate('/login')
+                          }}
+                    >Sign in</span>
+                </div>
+            </div>
         </div>
     );
 };
@@ -73,6 +101,13 @@ const validateUsername = (value) => {
 };
 
 const validatePassword = (value) => {
+    if (!value) {
+        return "This field is required";
+    }
+    return "";
+};
+
+const requiredRule = (value) => {
     if (!value) {
         return "This field is required";
     }
