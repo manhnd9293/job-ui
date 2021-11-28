@@ -43,3 +43,10 @@ v-separator {
   background-color: rgb(16, 136, 192);
   cursor: pointer;
 }
+
+.mt5{
+  margin-top: 5px;
+}
+.bold{
+  font-weight: bold;
+}

@@ -60,3 +60,12 @@
     overflow: hidden;
     margin-top: 10px;
 }
+
+.jobTitle{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.salaryRange{
+    color: #069306;
+}

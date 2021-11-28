@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import classes from './jobSearch.module.css'
 import {baseAxios} from "../../../config/AxiosConfig";
 import ReactHtmlParser from 'react-html-parser'
+import {getCLS} from "web-vitals";
 
 const JobSearch = () => {
     const [jobList, setJobList] = useState([]);
@@ -56,10 +57,14 @@ const JobSearch = () => {
                 <div className={classes.vSep}></div>
                 {
                     selectedJob && (
-                        <div className={classes.jobDetail}>
-                            <div>{selectedJob.title}</div>
-                            <div>{selectedJob.companyId.size} employees</div>
-                            <div>
+                        <div className={`${classes.jobDetail}`}>
+                            <div className={classes.jobTitle}>{selectedJob.title}</div>
+                            <div className={'mt5'}>
+                                <span>{selectedJob.companyId.name} - </span>
+                                <span>{selectedJob.workAddress}</span>
+                            </div>
+                            <div className={'mt5'}>{selectedJob.companyId.size} employees</div>
+                            <div className={classes.salaryRange + ' mt5'}>
                                 <span>{selectedJob.salary.from} $ - </span>
                                 <span>{selectedJob.salary.to} $</span>
                             </div>
@@ -73,10 +78,10 @@ const JobSearch = () => {
                                     <img style={{width: 60, height: 60}} src={getLogoUrl(selectedJob.companyId._id)}/>
                                 </div>
                                 <div>
-                                    <div>
+                                    <div className={'bold'}>
                                         {selectedJob.companyId.name}
                                     </div>
-                                    <div>
+                                    <div className={'mt5'}>
                                         {selectedJob.companyId.size} employees
                                     </div>
                                 </div>
