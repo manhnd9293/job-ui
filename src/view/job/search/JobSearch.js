@@ -68,7 +68,11 @@ const JobSearch = () => {
                                 <span>{selectedJob.salary.from} $ - </span>
                                 <span>{selectedJob.salary.to} $</span>
                             </div>
-                            <div>
+                            <div className={'mt10'}>
+                                <button className={'baseButton'}> Apply </button>
+                                <button className={'baseOutlineButton ml10'}> Save </button>
+                            </div>
+                            <div className={'mt10'}>
                                 {ReactHtmlParser(selectedJob.jobDescription)}
                             </div>
                             <div className={classes.hSep}/>

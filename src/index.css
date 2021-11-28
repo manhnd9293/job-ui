@@ -41,12 +41,34 @@ v-separator {
   outline: none;
   border: none;
   background-color: rgb(16, 136, 192);
+  border: 1px solid rgb(16, 136, 192);
+
   cursor: pointer;
 }
 
 .mt5{
   margin-top: 5px;
 }
+.mt10{
+  margin-top: 10px;
+}
+.ml5{
+  margin-left: 5px;
+}
+.ml10{
+  margin-left: 10px;
+}
 .bold{
   font-weight: bold;
+}
+
+
+.baseOutlineButton {
+  box-sizing: border-box;
+  background-color: white;
+  padding: 10px;
+  color: rgb(16, 136, 192);
+  outline: none;
+  border: 1px solid rgb(16, 136, 192);
+  cursor: pointer;
 }
