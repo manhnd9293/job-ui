@@ -11,7 +11,32 @@ const SignUp = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const validateUsername = (value) => {
+        if (!value) {
+            return "This field is required";
+        }
+
+        // baseAxios.post('/user/checkUsername', {
+        //     username: value
+        // }).then(res => {
+        //     const data = res.data;
+        //     if (data.isExist) {
+        //         userFormData.setErrorMessage('Username existed')
+        //         return;
+        //     }
+        //     if (!value) {
+        //         userFormData.setErrorMessage("This field is required");
+        //         return;
+        //     }
+        //     userFormData.setErrorMessage("");
+        // })
+
+        return "";
+    };
+
     const userFormData = useTextFormField(validateUsername);
+
     const passwordFormData = useTextFormField(validatePassword);
 
     const confirmValueRule = (value) => {
@@ -67,6 +92,7 @@ const SignUp = () => {
                         label={"Username"}
                         formData={userFormData}
                     />
+
                     <FormTextInput
                         label={"Password"}
                         type={"password"}
@@ -93,12 +119,6 @@ const SignUp = () => {
     );
 };
 
-const validateUsername = (value) => {
-    if (!value) {
-        return "This field is required";
-    }
-    return "";
-};
 
 const validatePassword = (value) => {
     if (!value) {
