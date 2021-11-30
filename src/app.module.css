@@ -17,3 +17,7 @@
     gap: 10px
 
 }
+
+.appContent{
+    flex-grow: 1;
+}

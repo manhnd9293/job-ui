@@ -1,0 +1,34 @@
+.viewContainer{
+    /*background-color: green;*/
+}
+
+.formField{
+    width: 300px;
+}
+
+.form {
+    width: 800px;
+    padding: 10px 20px;
+    background-color: white;
+}
+
+.previewLogo {
+    width: 100px;
+    height: 100px;
+    margin: 10px 0px;
+    background-color: #bed4e1;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.previewBackground{
+    width: 700px;
+    height: 200px;
+    margin: 10px 0px;
+
+    background-color: #bed4e1;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

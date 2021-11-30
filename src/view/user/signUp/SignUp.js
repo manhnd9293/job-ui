@@ -13,7 +13,6 @@ const SignUp = () => {
     const navigate = useNavigate();
 
     const validateUsername = (value) => {
-        console.log('run validateUsername')
         if (!value) {
             return "This field is required";
         }
