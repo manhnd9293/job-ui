@@ -4,7 +4,7 @@ import classes from "../formTextSelect/formTextSelect.module.css";
 const FormTextSelect = ({label, formData, options}) => {
     const {value, setValue, setIsTouch, showError, errorMessage} = formData;
     const errorInputClass = showError ? `${classes.error}` : "";
-    const defaultLabel = `select ${label.toLowerCase()}`;
+    const defaultLabel = `Select ${label.toLowerCase()}`;
 
     const handleChange = (e) => {
         const selectedValue = e.target.value !== defaultLabel ? e.target.value : null;

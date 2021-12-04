@@ -18,7 +18,7 @@ export const CompanyList = ({ companyList }) => {
           </div>
           <div className={classes.companyInfo}>
             <div style={{fontWeight: 'bold'}}>{company.name}</div>
-            <div>Size: {company.size} employees</div>
+            <div>Size: {company.size}</div>
             <div>Industry: {company.industry}</div>
             <div>Address: {company.address}</div>
           </div>
