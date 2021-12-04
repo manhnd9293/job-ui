@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: space-between;
 
-  width: 100%;
+  width: 1300px;
   margin-left: 120px;
   margin-right: 120px;
 }
@@ -20,7 +20,7 @@
 .firstNav {
   display: flex;
   align-items: center;
-  gap: 20px;
+  flex-grow: 1;
 }
 
 .secondNav{
@@ -38,6 +38,8 @@
   box-sizing: border-box;
   height: 30px;
   width: 290px;
+  margin-left: 120px;
+  margin-right: 20px;
   border-radius: 3px;
   padding: 10px 10px;
 
