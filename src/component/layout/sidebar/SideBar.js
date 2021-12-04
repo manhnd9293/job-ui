@@ -46,7 +46,7 @@ export const SideBar = () => {
             </div>
             <div className={classes.menuItem}>
                 <div className={classes.title}>
-                    <FcOrganization size={25}></FcOrganization>
+                    <FcOrganization size={25}/>
                     <span>Company</span>
                 </div>
                 <Link to="/company/search"

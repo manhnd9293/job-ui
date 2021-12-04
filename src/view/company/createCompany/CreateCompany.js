@@ -4,6 +4,10 @@ import useTextFormField from "../../../component/base/formTextInput/useTextFormF
 import FormTextSelect from "../../../component/base/formTextSelect/FormTextSelect";
 import {FormTextArea} from "../../../component/base/formTextArea/FormTextArea";
 import classes from './createCompany.module.css'
+import {useSelector} from "react-redux";
+import {baseAxios} from "../../../config/AxiosConfig";
+import {useNavigate} from "react-router-dom";
+import {RoutePath} from "../../../constant/RouteConstant";
 
 const CreateCompany = () => {
     const validateCompanyName = (value) => {
@@ -33,6 +37,10 @@ const CreateCompany = () => {
     const [coverImg, setCoverImg] = useState();
     const logoInput = useRef(null);
     const coverInput = useRef(null);
+    const user = useSelector(state => state.user);
+    const navigate = useNavigate();
+
+    const formDataFields = [companyNameFormData, industryFormData, sizeFormData, addressFormData, introductionFormData];
 
     const clickSelectLogo = () => {
         logoInput.current.click();
@@ -55,6 +63,48 @@ const CreateCompany = () => {
             reader.addEventListener('load', () => setCoverImg(reader.result));
             reader.readAsDataURL(e.target.files[0]);
         }
+    }
+
+    async function handleSubmit() {
+        const invalidForm = formDataFields.some(field => field.errorMessage !== '');
+        if (invalidForm) {
+            formDataFields.forEach(field => field.setIsTouch(true));
+            return;
+        }
+
+        const data = {
+            name: companyNameFormData.value,
+            size: sizeFormData.value,
+            industry: industryFormData.value,
+            address: addressFormData.value,
+            description: industryFormData.value,
+            createdByUserId: user.id,
+        }
+
+        console.log(data);
+        const res = await baseAxios.post(`/company`, data);
+        const company = res.data;
+        const companyId = company._id;
+        if (logoImg) {
+            const data = new FormData()
+            data.append('logo', logoInput.current.files[0])
+            await baseAxios.patch(`/company/${companyId}/logo`, data,{
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+        }
+        if (coverImg) {
+            const data = new FormData()
+            data.append('backdrop', coverInput.current.files[0])
+            await baseAxios.patch(`/company/${companyId}/backDrop`, data,{
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+        }
+        navigate(`${RoutePath.CompanyDetail}?id=${companyId}`)
+
     }
 
     return (
@@ -118,7 +168,9 @@ const CreateCompany = () => {
                     />
                 </div>
             </div>
-            <button className={'baseButton mt10'}>Create page</button>
+            <button className={'baseButton mt10'}
+                    onClick={handleSubmit}
+            >Create page</button>
         </div>
     );
 };

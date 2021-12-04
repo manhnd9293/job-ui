@@ -3,7 +3,7 @@ const RoutePath = {
     Home: '/',
     ListCompany: '/company/search',
     CreateCompanyPage: '/company/create',
-    CompanyDetail: '/company/search',
+    CompanyDetail: '/company/detail',
     ListJobPost: '/job/posting/list',
     JobPostReview: '/job/post/review',
     SearchJob: '/job/search',
