@@ -77,7 +77,7 @@ const CreateCompany = () => {
             size: sizeFormData.value,
             industry: industryFormData.value,
             address: addressFormData.value,
-            description: industryFormData.value,
+            description: introductionFormData.value,
             createdByUserId: user.id,
         }
 
