@@ -36,7 +36,7 @@ export const CompanyDetail = () => {
                 </div>
                 <div>
                     <span>Size: </span>
-                    <span>{company?.size} employess</span>
+                    <span>{company?.size}</span>
                 </div>
                 <div>
                     <span>Address: </span>

@@ -63,7 +63,7 @@ const JobSearch = () => {
                                 <span>{selectedJob.companyId.name} - </span>
                                 <span>{selectedJob.workAddress}</span>
                             </div>
-                            <div className={'mt5'}>{selectedJob.companyId.size} employees</div>
+                            <div className={'mt5'}>{selectedJob.companyId.size}</div>
                             <div className={classes.salaryRange + ' mt5'}>
                                 <span>{selectedJob.salary.from} $ - </span>
                                 <span>{selectedJob.salary.to} $</span>
@@ -86,7 +86,7 @@ const JobSearch = () => {
                                         {selectedJob.companyId.name}
                                     </div>
                                     <div className={'mt5'}>
-                                        {selectedJob.companyId.size} employees
+                                        {selectedJob.companyId.size}
                                     </div>
                                 </div>
 
