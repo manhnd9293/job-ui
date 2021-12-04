@@ -12,9 +12,8 @@
   align-items: center;
   justify-content: space-between;
 
-  width: 1300px;
-  margin-left: 120px;
-  margin-right: 120px;
+  width: 1350px;
+  margin: 0px auto;
 }
 
 .firstNav {

@@ -15,10 +15,10 @@
 
     display: flex;
     gap: 10px;
-    min-width: 800px;
-    max-width: 1100px;
-    margin-top: 10px;
-    margin-left: 100px;
+    width: 1350px;
+    margin: 10px auto;
+    /*background-color: green;*/
+
 }
 
 .appContent{
