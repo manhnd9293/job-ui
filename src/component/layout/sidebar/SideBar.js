@@ -2,9 +2,9 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import classes from "./sidebar.module.css";
 import {FcBriefcase, FcOrganization} from "react-icons/fc";
-import {Link, useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {RoutePath} from "../../../constant/RouteConstant";
-import {logInUser, logOutUser} from "../../../store/user/UserAction";
+import {logOutUser} from "../../../store/user/UserAction";
 
 export const SideBar = () => {
     const user = useSelector((state) => state.user);
@@ -24,47 +24,58 @@ export const SideBar = () => {
                 >{`${user.firstname} ${user.lastname}`}</div>
                 <div className={'ml10'}
                      onClick={logOut}
-                >Log out</div>
+                >Log out
+                </div>
             </div>
             <div className={classes.menuItem}>
                 <div className={classes.title}>
                     <FcBriefcase size={25}/>
                     Jobs
                 </div>
-                <Link to={RoutePath.SearchJob}
-                      style={{textDecoration: 'none', color: 'inherit'}}
+                <NavLink to={RoutePath.SearchJob}
+                         className={(navData) => `${classes.subTitle} ${navData.isActive ? classes.isActive : ''}`}
+                         style={{textDecoration: 'none', color: 'inherit'}}
                 >
-                    <span className={classes.subTitle}>Job search</span>
-                </Link>
-                <Link to="/job/posting/list"
-                      style={{textDecoration: 'none', color: 'inherit'}}
+                    <span >Job search</span>
+                </NavLink>
+                <NavLink to="/job/post"
+                         className={(navData) => `${classes.subTitle} ${navData.isActive ? classes.isActive : ''}`}
+                         style={{textDecoration: 'none', color: 'inherit'}}
                 >
-                    <span className={classes.subTitle}>Job post</span>
+                    <span >Job post</span>
+                </NavLink>
+                <NavLink to="/job/posting/list"
+                         className={(navData) => `${classes.subTitle} ${navData.isActive ? classes.isActive : ''}`}
+                         style={{textDecoration: 'none', color: 'inherit'}}
+                >
+                    <span >My Posted Jobs</span>
 
-                </Link>
-                <span className={classes.subTitle}>Your apply</span>
+                </NavLink>
             </div>
             <div className={classes.menuItem}>
                 <div className={classes.title}>
                     <FcOrganization size={25}/>
                     <span>Company</span>
                 </div>
-                <Link to="/company/search"
-                      style={{textDecoration: 'none', color: 'inherit'}}
+                <NavLink to="/company/search"
+                         style={{textDecoration: 'none', color: 'inherit'}}
+                         className={(navData) => `${classes.subTitle} ${navData.isActive ? classes.isActive : ''}`}
                 >
-                    <span className={classes.subTitle}>Search</span>
-                </Link>
-                <Link to="/company/create"
-                      style={{textDecoration: 'none', color: 'inherit'}}
+                    <span >Search</span>
+                </NavLink>
+                <NavLink to="/company/create"
+                         style={{textDecoration: 'none', color: 'inherit'}}
+                         className={(navData) => `${classes.subTitle} ${navData.isActive ? classes.isActive : ''}`}
 
                 >
-                    <span className={classes.subTitle}>Create a page</span>
-                </Link>
-                <Link to='/company/mine'
-                      style={{textDecoration: 'none', color: 'inherit'}}
+                    <span >Create a page</span>
+                </NavLink>
+                <NavLink to={RoutePath.MyCompanyList}
+                         style={{textDecoration: 'none', color: 'inherit'}}
+                         className={(navData) => `${classes.subTitle} ${navData.isActive ? classes.isActive : ''}`}
                 >
-                    <span className={classes.subTitle}>Your company</span>
-                </Link>
+                    <span>My company pages</span>
+                </NavLink>
             </div>
         </div>
     );

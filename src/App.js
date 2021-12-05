@@ -19,6 +19,7 @@ import {RoutePath} from "./constant/RouteConstant";
 import JobSearch from "./view/job/search/JobSearch";
 import SignUp from "./view/user/signUp/SignUp";
 import CreateCompany from "./view/company/createCompany/CreateCompany";
+import MyCompanyList from "./view/company/myCompanyList/MyCompanyList";
 
 function App() {
   const userId = useSelector((state) => state.user.id);
@@ -52,16 +53,19 @@ function App() {
         {userId && <SideBar/>}
         <div className={classes.appContent}>
           <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/" element={<JobSearch />} />
-            <Route path="/company/search" element={<CompanySearch />} />
-            <Route path="/company/detail" element={<CompanyDetail />} />
-            <Route path="/job/post" element={<JobPost />} />
-            <Route path="/job/posting/list" element={<JobPostingList />} />
-            <Route path="/job/post/review" element={<PostReview />} />
-            <Route path={RoutePath.SearchJob} element={<JobSearch />} />
+            <Route path={RoutePath.Login} element={<Login />} />
             <Route path={RoutePath.SignUp} element={<SignUp />} />
+            <Route path={RoutePath.Home} element={<JobSearch />} />
+
+            <Route path={RoutePath.ListCompany} element={<CompanySearch />} />
+            <Route path={RoutePath.CompanyDetail} element={<CompanyDetail />} />
             <Route path={RoutePath.CreateCompanyPage} element={<CreateCompany />} />
+            <Route path={RoutePath.MyCompanyList} element={<MyCompanyList />} />
+
+            <Route path={RoutePath.PostJob} element={<JobPost />} />
+            <Route path={RoutePath.ListJobPost} element={<JobPostingList />} />
+            <Route path={RoutePath.JobPostReview} element={<PostReview />} />
+            <Route path={RoutePath.SearchJob} element={<JobSearch />} />
           </Routes>
         </div>
       </div>
