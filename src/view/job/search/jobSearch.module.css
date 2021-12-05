@@ -9,6 +9,7 @@
 .jobList{
     box-sizing: border-box;
     width: 400px;
+    overflow-y: scroll;
 }
 
 .vSep{
