@@ -3,7 +3,7 @@
     flex-direction: column;
   
     min-height: 100vh;
-  
+    background-color: #eeeeee;
     font-family: sans-serif;
     min-width: 1100px;
 }
@@ -16,7 +16,6 @@
     gap: 10px;
     width: 1350px;
     margin: 10px auto;
-    background-color: green;
 
 }
 
