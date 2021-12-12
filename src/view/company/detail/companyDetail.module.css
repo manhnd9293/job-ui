@@ -68,3 +68,15 @@
     height: 1px;
     background-color: #a6a4a4;
 }
+
+.previewImg{
+    width: 500px;
+    height: 300px;
+    margin: auto;
+    margin-top: 10px;
+
+    background-color: #aac4da;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
