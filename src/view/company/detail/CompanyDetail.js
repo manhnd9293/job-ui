@@ -3,13 +3,14 @@ import {useLocation} from "react-router-dom";
 import {baseAxios} from "../../../config/AxiosConfig";
 import classes from "./companyDetail.module.css";
 import {useSelector} from "react-redux";
-import AddCompanyPhotoModal from "./AddCompanyPhotoModal";
+import AddCompanyPhotoModal from "./photoContainer/AddCompanyPhotoModal";
+import {FaTimes} from "react-icons/all";
+import PhotoContainer from "./photoContainer/PhotoContainer";
 
 export const CompanyDetail = () => {
     const query = new URLSearchParams(useLocation().search);
     const [company, setCompany] = useState(null);
     const user = useSelector(state => state.user);
-    const [showAddPhotoModal, setShowAddPhotoModal] = useState(false);
 
     useEffect(() => {
         const id = query.get("id");
@@ -18,10 +19,6 @@ export const CompanyDetail = () => {
         });
     }, []);
 
-    const onCompleteAddPhoto = (url) => {
-        setShowAddPhotoModal(false);
-        company.photos.push(url);
-    };
     return (
         <div className={classes.container}>
             <div
@@ -52,30 +49,11 @@ export const CompanyDetail = () => {
                 </div>
                 <div className={classes.contentTitle}>Introduction:</div>
                 <div>{company?.description}</div>
-                <div className={classes.contentTitle}>
-                    <span>Company photos</span>
-                    {user.id === company?.createdByUserId &&
-                    <button className={'smallBtn baseButton ml5'}
-                            onClick={event => setShowAddPhotoModal(true)}
+                <PhotoContainer company={company}
+                                user={user}
+                />
 
-                    >Add photo</button>
-                    }
-                </div>
-                <div className={classes.photoContainer}>
-                    {company?.photos.map(photo =>
-                        <div className={classes.companyPhoto}
-                             key={photo._id}
-                             style={{backgroundImage: `url(${photo.url})`}}
-                        />
-                    )}
-                </div>
             </div>
-            {showAddPhotoModal &&
-            <AddCompanyPhotoModal showAddPhotoModal={showAddPhotoModal}
-                                  setShowAddPhotoModal={setShowAddPhotoModal}
-                                  company={company}
-                                  onComplete={onCompleteAddPhoto}
-            />}
 
         </div>
     );

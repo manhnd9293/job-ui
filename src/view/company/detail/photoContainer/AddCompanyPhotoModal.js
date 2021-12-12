@@ -1,8 +1,8 @@
 import React, {useRef, useState} from 'react';
-import BaseModal from "../../../component/base/modal/BaseModal";
-import UploadImageWrapper from "../../../component/base/uploadImageWrapper/UploadImageWrapper";
-import classes from './companyDetail.module.css'
-import {baseAxios} from "../../../config/AxiosConfig";
+import BaseModal from "../../../../component/base/modal/BaseModal";
+import UploadImageWrapper from "../../../../component/base/uploadImageWrapper/UploadImageWrapper";
+import classes from '../companyDetail.module.css'
+import {baseAxios} from "../../../../config/AxiosConfig";
 const AddCompanyPhotoModal = ({showAddPhotoModal, setShowAddPhotoModal, company, onComplete}) => {
     const [photo, setPhoto] = useState(null);
     const imageFileRef = useRef();
