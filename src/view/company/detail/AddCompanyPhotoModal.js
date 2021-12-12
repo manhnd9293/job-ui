@@ -3,7 +3,7 @@ import BaseModal from "../../../component/base/modal/BaseModal";
 import UploadImageWrapper from "../../../component/base/uploadImageWrapper/UploadImageWrapper";
 import classes from './companyDetail.module.css'
 import {baseAxios} from "../../../config/AxiosConfig";
-const AddCompanyPhotoModal = ({showAddPhotoModal, setShowAddPhotoModal, company}) => {
+const AddCompanyPhotoModal = ({showAddPhotoModal, setShowAddPhotoModal, company, onComplete}) => {
     const [photo, setPhoto] = useState(null);
     const imageFileRef = useRef();
     const selectPhoto = (e, inputRef) => {
@@ -26,7 +26,7 @@ const AddCompanyPhotoModal = ({showAddPhotoModal, setShowAddPhotoModal, company}
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            console.log(response.data);
+            onComplete(response.data);
         } catch (e) {
             console.log(e);
         }

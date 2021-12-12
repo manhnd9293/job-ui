@@ -18,6 +18,10 @@ export const CompanyDetail = () => {
         });
     }, []);
 
+    const onCompleteAddPhoto = (url) => {
+        setShowAddPhotoModal(false);
+        company.photos.push(url);
+    };
     return (
         <div className={classes.container}>
             <div
@@ -70,6 +74,7 @@ export const CompanyDetail = () => {
             <AddCompanyPhotoModal showAddPhotoModal={showAddPhotoModal}
                                   setShowAddPhotoModal={setShowAddPhotoModal}
                                   company={company}
+                                  onComplete={onCompleteAddPhoto}
             />}
 
         </div>
