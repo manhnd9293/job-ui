@@ -20,6 +20,7 @@ import JobSearch from "./view/job/search/JobSearch";
 import SignUp from "./view/user/signUp/SignUp";
 import CreateCompany from "./view/company/createCompany/CreateCompany";
 import MyCompanyList from "./view/company/myCompanyList/MyCompanyList";
+import axios from "axios";
 
 function App() {
   const userId = useSelector((state) => state.user.id);

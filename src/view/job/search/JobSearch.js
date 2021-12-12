@@ -3,6 +3,8 @@ import classes from './jobSearch.module.css'
 import {baseAxios} from "../../../config/AxiosConfig";
 import ReactHtmlParser from 'react-html-parser'
 import {getCLS} from "web-vitals";
+import {Link} from "react-router-dom";
+import {RoutePath} from "../../../constant/RouteConstant";
 
 const JobSearch = () => {
     const [jobList, setJobList] = useState([]);
@@ -54,7 +56,7 @@ const JobSearch = () => {
 
                     ))}
                 </div>
-                <div className={classes.vSep}></div>
+                <div className={classes.vSep}/>
                 {
                     selectedJob && (
                         <div className={`${classes.jobDetail}`}>
@@ -82,9 +84,12 @@ const JobSearch = () => {
                                     <img style={{width: 50, height: 50}} src={getLogoUrl(selectedJob.companyId._id)}/>
                                 </div>
                                 <div>
-                                    <div className={'bold'}>
-                                        {selectedJob.companyId.name}
-                                    </div>
+                                    <Link to={`${RoutePath.CompanyDetail}?id=${selectedJob.companyId._id}` } style={{color: 'black', textDecoration:'none'}}>
+                                        <div className={classes.companyInfoName}>
+                                            {selectedJob.companyId.name}
+                                        </div>
+                                    </Link>
+
                                     <div className={'mt5'}>
                                         {selectedJob.companyId.size}
                                     </div>

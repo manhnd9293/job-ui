@@ -70,3 +70,14 @@
 .salaryRange{
     color: #069306;
 }
+
+.companyInfoName{
+    font-size: 1.05rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.companyInfoName:hover{
+    color: #0c5685;
+    text-decoration: underline;
+}

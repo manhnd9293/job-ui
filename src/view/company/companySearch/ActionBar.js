@@ -5,17 +5,6 @@ import { Link } from "react-router-dom";
 export const ActionBar = () => {
     return (
         <div className={classes.actionBar}>
-        <div style={{ textAlign: "center" }}>
-          <Link to="/company/create">
-            <button>Create a company</button>
-          </Link>
-        </div>
-        <div className={classes.hSep}></div>
-        <div>
-          <input type={"checkbox"}></input>
-          <span>Your company</span>
-        </div>
-        <div className={classes.hSep}></div>
         <div>
           <div>
             <div>Search name</div>
