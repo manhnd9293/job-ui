@@ -2,17 +2,26 @@ import React, {useEffect, useState} from "react";
 import {useLocation} from "react-router-dom";
 import {baseAxios} from "../../../config/AxiosConfig";
 import classes from "./companyDetail.module.css";
+import {useSelector} from "react-redux";
+import AddCompanyPhotoModal from "./photoContainer/AddCompanyPhotoModal";
+import {FaTimes} from "react-icons/all";
+import PhotoContainer from "./photoContainer/PhotoContainer";
 
 export const CompanyDetail = () => {
     const query = new URLSearchParams(useLocation().search);
     const [company, setCompany] = useState(null);
+    const user = useSelector(state => state.user);
 
     useEffect(() => {
+        loadCompany();
+    }, []);
+
+    const loadCompany = () => {
         const id = query.get("id");
         baseAxios.get(`/company/${id}`).then((res) => {
             setCompany(res.data);
         });
-    }, []);
+    }
 
     return (
         <div className={classes.container}>
@@ -42,19 +51,14 @@ export const CompanyDetail = () => {
                     <span>Address: </span>
                     <span>{company?.address}</span>
                 </div>
-                <div className={classes.contentTitle}>Introduction: </div>
+                <div className={classes.contentTitle}>Introduction:</div>
                 <div>{company?.description}</div>
-                <div className={classes.contentTitle}>Company photos</div>
-                <div className={classes.photoContainer}>
-                    {company?.photos.map(photo =>
-                        <div className={classes.companyPhoto}
-                             key={photo._id}
-                             style={{backgroundImage: `url(${photo.url})`}}
-                        />
-                    )}
-                </div>
-            </div>
+                <PhotoContainer company={company}
+                                user={user}
+                                onUpdatePhotoList={loadCompany}
+                />
 
+            </div>
 
         </div>
     );

@@ -34,19 +34,3 @@
   height: 22px;
 }
 
-.companyCard {
-  display: flex;
-  gap: 10px;
-  box-sizing: border-box;
-
-  width: 560px;
-  height: 100px;
-  margin: 10px 0px;
-  background-color: white;
-  padding: 20px;
-  cursor: pointer;
-}
-.companyInfo {
-  display: flex;
-  flex-direction: column;
-}

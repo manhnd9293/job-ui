@@ -74,7 +74,7 @@ export const SideBar = () => {
                          style={{textDecoration: 'none', color: 'inherit'}}
                          className={(navData) => `${classes.subTitle} ${navData.isActive ? classes.isActive : ''}`}
                 >
-                    <span>My company pages</span>
+                    <span>My pages</span>
                 </NavLink>
             </div>
         </div>

@@ -72,3 +72,15 @@ v-separator {
   border: 1px solid rgb(16, 136, 192);
   cursor: pointer;
 }
+
+.cancelBtn{
+  font-weight: bold;
+  background-color: #D7D7D1;
+  color: #2d2d2d;
+  border: none;
+
+}
+
+.smallBtn{
+  padding: 3px;
+}
