@@ -3,23 +3,33 @@ import classes from "../companyDetail.module.css";
 import {FaTimes} from "react-icons/all";
 import AddCompanyPhotoModal from "./AddCompanyPhotoModal";
 import ConfirmDeletePhotoModal from "./ConfirmDeletePhotoModal";
+import {baseAxios} from "../../../../config/AxiosConfig";
 
-const PhotoContainer = ({company, user}) => {
+const PhotoContainer = ({company, user, onUpdatePhotoList}) => {
     const [showAddPhotoModal, setShowAddPhotoModal] = useState(false);
     const [showConfirmDelete, setShowConfirmDelete] = useState(false);
     const [deletePhotoId, setDeletePhotoId] = useState(null);
+    const [photoList, setPhotoList] = useState(company?.photos || []);
 
 
     const onCompleteAddPhoto = (url) => {
         setShowAddPhotoModal(false);
-        company.photos.push(url);
+        onUpdatePhotoList()
     };
 
     const showDeleteConfirmModal = photoId => (e) => {
-        console.log('click');
         setDeletePhotoId(photoId);
         setShowConfirmDelete(true);
+
     }
+
+    const confirmDelete = (photoId) => () =>{
+        baseAxios.delete(`/company/${company._id}/photos/${photoId}`).then(res => {
+            setShowConfirmDelete(false);
+            onUpdatePhotoList()
+        })
+    }
+
 
     return (
         <>
@@ -59,9 +69,8 @@ const PhotoContainer = ({company, user}) => {
                                      photoId={deletePhotoId}
                                      showModal={showConfirmDelete}
                                      setShowModal={setShowConfirmDelete}
-            />
-            }
-
+                                     onDelete={confirmDelete}
+            />}
         </>
     );
 };

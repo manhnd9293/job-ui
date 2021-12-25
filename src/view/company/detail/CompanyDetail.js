@@ -13,11 +13,15 @@ export const CompanyDetail = () => {
     const user = useSelector(state => state.user);
 
     useEffect(() => {
+        loadCompany();
+    }, []);
+
+    const loadCompany = () => {
         const id = query.get("id");
         baseAxios.get(`/company/${id}`).then((res) => {
             setCompany(res.data);
         });
-    }, []);
+    }
 
     return (
         <div className={classes.container}>
@@ -51,6 +55,7 @@ export const CompanyDetail = () => {
                 <div>{company?.description}</div>
                 <PhotoContainer company={company}
                                 user={user}
+                                onUpdatePhotoList={loadCompany}
                 />
 
             </div>

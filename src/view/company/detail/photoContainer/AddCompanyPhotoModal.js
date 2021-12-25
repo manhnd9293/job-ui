@@ -30,7 +30,6 @@ const AddCompanyPhotoModal = ({showAddPhotoModal, setShowAddPhotoModal, company,
         } catch (e) {
             console.log(e);
         }
-
     }
 
     return (
