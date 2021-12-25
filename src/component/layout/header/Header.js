@@ -11,19 +11,19 @@ export const Header = () => {
         <div className={classes.firstNav}>
           <div className={classes.appName}>
             <Link to={"/"} style={{ color: "white", textDecoration: "none" }}>
-              DEVJOB
+              Job Link
             </Link>
           </div>
-          <input
-            className={classes.searchJob}
-            type="text"
-            placeholder="Search for title, skills, company"
-          />
-          <select placeholder="city" className={classes.citySelect}>
-            <option>Hanoi</option>
-            <option>Danang</option>
-            <option>HoChiMinh</option>
-          </select>
+          {/*<input*/}
+          {/*  className={classes.searchJob}*/}
+          {/*  type="text"*/}
+          {/*  placeholder="Search for title, skills, company"*/}
+          {/*/>*/}
+          {/*<select placeholder="city" className={classes.citySelect}>*/}
+          {/*  <option>Hanoi</option>*/}
+          {/*  <option>Danang</option>*/}
+          {/*  <option>HoChiMinh</option>*/}
+          {/*</select>*/}
         </div>
         <div className={classes.secondNav}>
             <span>{user.username}</span>
