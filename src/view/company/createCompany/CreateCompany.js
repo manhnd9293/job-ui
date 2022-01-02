@@ -14,16 +14,6 @@ const CreateCompany = () => {
         if (!value) {
             return "This field is required";
         }
-        // baseAxios.post('/user/checkUsername', {
-        //     username: value
-        // }).then(res => {
-        //     const data = res.data;
-        //     if (data.isExist) {
-        //         userFormData.setAsyncError('Username existed')
-        //     } else{
-        //         userFormData.setAsyncError('')
-        //     }
-        // })
 
         return "";
     }
@@ -81,7 +71,6 @@ const CreateCompany = () => {
             createdByUserId: user.id,
         }
 
-        console.log(data);
         const res = await baseAxios.post(`/company`, data);
         const company = res.data;
         const companyId = company._id;

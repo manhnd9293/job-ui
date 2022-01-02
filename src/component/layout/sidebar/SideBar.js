@@ -5,6 +5,7 @@ import {FcBriefcase, FcOrganization} from "react-icons/fc";
 import {NavLink, useNavigate} from "react-router-dom";
 import {RoutePath} from "../../../constant/RouteConstant";
 import {logOutUser} from "../../../store/user/UserAction";
+import {Role} from "../../../enums/Roles";
 
 export const SideBar = () => {
     const user = useSelector((state) => state.user);
@@ -27,6 +28,18 @@ export const SideBar = () => {
                 >Log out
                 </div>
             </div>
+            {   user.roles.includes(Role.SuperAdmin) &&
+                <NavLink to={RoutePath.Admin}>
+                    <div className={classes.menuItem}
+                         style={{textDecoration: 'none', color: 'inherit'}}
+                    >
+                        <div
+                            className={classes.title}
+                        >Admin</div>
+
+                    </div>
+                </NavLink>
+            }
             <div className={classes.menuItem}>
                 <div className={classes.title}>
                     <FcBriefcase size={25}/>

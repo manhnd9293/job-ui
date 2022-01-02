@@ -13,6 +13,11 @@ const RoutePath = {
     PostJob: '/job/post',
     JobPostReview: '/job/post/review',
     SearchJob: '/job/search',
+    Admin: '/admin',
+
+    SchoolCreate: '/school/create',
+    SchoolList: '/school/list',
+    SchoolDetail: '/school/detail',
 }
 
 export {RoutePath}
