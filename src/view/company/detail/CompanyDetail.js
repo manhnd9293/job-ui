@@ -37,7 +37,7 @@ export const CompanyDetail = () => {
             <div className={classes.name}>{company?.name}</div>
             <div className={classes.content}>
                 <div className={classes.tabName}>About</div>
-                <div className={classes.hSep}></div>
+                <div className={classes.hSep}/>
                 <div className={classes.contentTitle}>General information</div>
                 <div>
                     <span>Industry: </span>
