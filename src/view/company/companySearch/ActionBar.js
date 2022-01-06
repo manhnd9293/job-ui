@@ -1,12 +1,19 @@
 import React, {useEffect, useState} from 'react'
 import classes from "./companySearch.module.css";
 import {baseAxios} from "../../../config/AxiosConfig";
+import {useLocation} from "react-router-dom";
 
-export const ActionBar = ({onSearch}) => {
+export const ActionBar = ({onSearch, searchData}) => {
+    const query = new URLSearchParams(useLocation().search);
+    const searchKey = query.get('searchKey') || '';
+    const industry = query.get('industry') || '';
+    const location = query.get('city') || '';
+    const size = query.get('size') || '';
+
     const [cityList, setCityList] = useState([]);
     const [sizeList, setSizeList] = useState([]);
     const [industryList, setIndustryList] = useState([]);
-    const [filterObject, setFilterObject] = useState({});
+    const [filterObject, setFilterObject] = useState({searchKey, industry, location, size});
 
     const industryLabel = 'choose industry';
     const locationLabel = 'choose location';
@@ -55,6 +62,7 @@ export const ActionBar = ({onSearch}) => {
                 <div>
                     <div>Search name</div>
                     <input onChange={handleChangeSearchKey}
+                           value={filterObject.searchKey}
                            style={{margin: "10px 0px"}} type="text"/>
                 </div>
                 <div>
@@ -62,8 +70,9 @@ export const ActionBar = ({onSearch}) => {
                     <select
                         style={{margin: "10px 0px"}}
                         onChange={handleChangeIndustry}
+                        value={filterObject.industry}
                     >
-                        <option key={`null`} value={null}>{industryLabel}</option>
+                        <option key={`null`} value={''}>{industryLabel}</option>
                         {industryList && industryList.map((industry, index) => (
                             <option key={index} value={industry}>{industry}</option>
                         ))}
@@ -75,8 +84,9 @@ export const ActionBar = ({onSearch}) => {
                         style={{margin: "10px 0px"}}
                         placeholder="select location"
                         onChange={handleChangeLocation}
+                        value={filterObject.location}
                     >
-                        <option key={`null`} value={null}>{locationLabel}</option>
+                        <option key={`null`} value={''}>{locationLabel}</option>
                         {cityList && cityList.map((city, index) => (
                             <option key={index} value={city}>{city}</option>
                         ))}
@@ -88,8 +98,9 @@ export const ActionBar = ({onSearch}) => {
                         style={{margin: "10px 0px"}}
                         placeholder="select company size"
                         onChange={handleChangeSize}
+                        value={filterObject.size}
                     >
-                        <option key={`null`} value={null}>{sizeLabel}</option>
+                        <option key={`null`} value={''}>{sizeLabel}</option>
                         {sizeList && sizeList.map((size, index) => (
                             <option key={index} value={size}>{`${size.trim().split('-').join(' ')} employees`}</option>
                         ))}
