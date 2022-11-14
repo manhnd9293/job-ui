@@ -82,7 +82,7 @@ function App() {
                     </Routes>
                 </div>
             </div>
-            <Footer></Footer>
+            <Footer/>
         </div>
     );
 }
