@@ -5,7 +5,7 @@ import AddCompanyPhotoModal from "./AddCompanyPhotoModal";
 import ConfirmDeletePhotoModal from "./ConfirmDeletePhotoModal";
 import {baseAxios} from "../../../../config/AxiosConfig";
 
-const PhotoContainer = ({company, user, onUpdatePhotoList}) => {
+const PhotoContainer = ({company, user, onUpdatePhotoList, showLarge}) => {
     const [showAddPhotoModal, setShowAddPhotoModal] = useState(false);
     const [showConfirmDelete, setShowConfirmDelete] = useState(false);
     const [deletePhotoId, setDeletePhotoId] = useState(null);
@@ -18,6 +18,7 @@ const PhotoContainer = ({company, user, onUpdatePhotoList}) => {
     };
 
     const showDeleteConfirmModal = photoId => (e) => {
+        e.stopPropagation();
         setDeletePhotoId(photoId);
         setShowConfirmDelete(true);
 
@@ -29,7 +30,6 @@ const PhotoContainer = ({company, user, onUpdatePhotoList}) => {
             onUpdatePhotoList()
         })
     }
-
 
     return (
         <>
@@ -47,12 +47,15 @@ const PhotoContainer = ({company, user, onUpdatePhotoList}) => {
                     <div className={classes.companyPhoto}
                          key={photo._id}
                          style={{backgroundImage: `url(${photo.url})`}}
+                         onClick={()=> {
+                             showLarge(photo.url)
+                         }}
                     >
                         {user.id === company.createdByUserId &&
                         <span style={{position: 'absolute', top: 5, right: 5}}
                               onClick={showDeleteConfirmModal(photo._id)}
                         >
-                                <FaTimes size={12} fontWeight={'lighter'}/>
+                                <FaTimes size={15} fontWeight={'lighter'} color='white smoke'/>
                             </span>}
                     </div>
                 )}

@@ -3,13 +3,14 @@ import {useLocation} from "react-router-dom";
 import {baseAxios} from "../../../config/AxiosConfig";
 import classes from "./companyDetail.module.css";
 import {useSelector} from "react-redux";
-import AddCompanyPhotoModal from "./photoContainer/AddCompanyPhotoModal";
-import {FaTimes} from "react-icons/all";
 import PhotoContainer from "./photoContainer/PhotoContainer";
+import LargePhotoModal from "./photoContainer/LargePhotoModal";
 
 export const CompanyDetail = () => {
     const query = new URLSearchParams(useLocation().search);
     const [company, setCompany] = useState(null);
+    const [showLargePhoto, setShowLargePhoto] = useState(false);
+    const [largePhotoUrl, setLargePhotoUrl] = useState(null);
     const user = useSelector(state => state.user);
 
     useEffect(() => {
@@ -23,15 +24,30 @@ export const CompanyDetail = () => {
         });
     }
 
+    const showLargeImg = (url) => {
+        setLargePhotoUrl(url);
+        setShowLargePhoto(true);
+    }
+
+
+    let logoUrl = company?.logoUrl;
+    let backDropUrl = company?.backDropUrl;
+
     return (
         <div className={classes.container}>
             <div
                 className={classes.coverPic}
-                style={{backgroundImage: `url(${company?.backDropUrl})`}}
+                style={{backgroundImage: `url(${backDropUrl})`}}
+                onClick={() => {
+                    showLargeImg(backDropUrl);
+                }}
             />
             <div
                 className={classes.logo}
-                style={{backgroundImage: `url(${company?.logoUrl})`}}
+                style={{backgroundImage: `url(${logoUrl})`}}
+                onClick={() => {
+                    showLargeImg(logoUrl)
+                }}
             />
 
             <div className={classes.name}>{company?.name}</div>
@@ -56,10 +72,14 @@ export const CompanyDetail = () => {
                 <PhotoContainer company={company}
                                 user={user}
                                 onUpdatePhotoList={loadCompany}
+                                showLarge={showLargeImg}
                 />
-
             </div>
-
+            {largePhotoUrl &&
+              <LargePhotoModal setShow={setShowLargePhoto}
+                               show={showLargePhoto}
+                               imgSrc={largePhotoUrl}
+              />}
         </div>
     );
 };
